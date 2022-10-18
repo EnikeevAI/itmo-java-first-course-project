@@ -32,5 +32,8 @@ public class Application {
 
         // Выводим информацию о посетителях
         bestClub.printFitnessClubMembersInfo();
+
+        bestClub.stopWorking(); // клуб закрывается
+        bestClub.printFitnessClubMembersInfo(); // смотрим, что никого не осталось
     }
 }
