@@ -22,5 +22,12 @@ public class Application {
         bestClub.doTraining(abon2, "Тренажерный зал", LocalTime.of(17, 15)); // Ваш тип абонемента не позволяет заниматься в выбранное время
         bestClub.doTraining(abon2, "Тренажерный зал", LocalTime.of(12, 15)); // Запускаем клиента на тренировку в тренажерный зал
         bestClub.doTraining(abon2, "Групповые занятия", LocalTime.of(12, 15)); // Проверяем, что в другую зону не попасть, т.к. клиент уже в трен зале
+        bestClub.doTraining(abon3,"Тренажерный зал", LocalTime.of(12, 15)); // Запускаем клиента на тренировку в тренажерный зал (число клиентов в тренажерном зале - 2)
+
+        // Проверка на заполненность зоны тренировок
+        for (int i = 0; i < 19; i++) {
+            GymMembership abon = new GymMembership("Сергей", "Сергеев", 1969, "Полный", 10);
+            bestClub.doTraining(abon,"Тренажерный зал", LocalTime.of(12, 15));
+        }
     }
 }
