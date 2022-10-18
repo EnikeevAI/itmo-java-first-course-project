@@ -71,11 +71,20 @@ public class FitnessClub {
         return false;
     }
 
-    private void addToTrainingZone(GymMembership[] trainingZone, GymMembership membership) {
+    private void addToTrainingZone(GymZone gymZone, GymMembership membership, LocalDate trainingDate, LocalTime trainingTime) {
+        GymMembership[] trainingZone;
+        if (gymZone.equals(GymZone.SWIMMING_POOL)) trainingZone = swimmingPoolMembers;
+        else if (gymZone.equals(GymZone.GROUP_CLASSES)) trainingZone = groupClassesMembers;
+        else trainingZone = gymMembers;
+
         for (int i = 0; i < trainingZone.length; i++) {
             if (trainingZone[i] == null) {
                 trainingZone[i] = membership;
-                System.out.println("Посетитель добавлен в выбранную зону");
+                System.out.printf("Посетитель: %s %s. Посещаемая зона: %s.",
+                        membership.getFirstName(),
+                        membership.getSecondName(),
+                        gymZone.getGymZoneName().toLowerCase());
+                System.out.println(" Дата тренировки: " + trainingDate + ", время тренировки: " + trainingTime);
                 break;
             }
 
@@ -123,17 +132,47 @@ public class FitnessClub {
         }
 
         if (gymZone.equals(GymZone.SWIMMING_POOL) && !isTrainingZoneFull(swimmingPoolMembers)) {
-            addToTrainingZone(swimmingPoolMembers, membership);
+            addToTrainingZone(GymZone.SWIMMING_POOL, membership, workingDate, trainingTime);
             System.out.println("Проходите на тренировку в бассейн");
         } else if (gymZone.equals(GymZone.GROUP_CLASSES) && !isTrainingZoneFull(groupClassesMembers)) {
-            addToTrainingZone(groupClassesMembers, membership);
+            addToTrainingZone(GymZone.SWIMMING_POOL, membership, workingDate, trainingTime);
             System.out.println("Проходите на тренировку в зал групповых занятий");
         } else if (gymZone.equals(GymZone.GYM) && !isTrainingZoneFull(gymMembers)) {
-            addToTrainingZone(gymMembers, membership);
+            addToTrainingZone(GymZone.SWIMMING_POOL, membership, workingDate, trainingTime);
             System.out.println("Проходите на тренировку в тренажерный зал");
         } else {
             System.out.println("В выбранной Вами зоне тренировок нет свободных мест");
         }
+    }
+
+    private void printMembersInTrainingZoneInfo(GymZone gymZone) {
+        GymMembership[] trainingZone;
+
+        if (gymZone.equals(GymZone.SWIMMING_POOL)) trainingZone = swimmingPoolMembers;
+        else if (gymZone.equals(GymZone.GROUP_CLASSES)) trainingZone = groupClassesMembers;
+        else trainingZone = gymMembers;
+        System.out.println("======Зона " + gymZone.getGymZoneName() + "======");
+        int memberCounter = 0;
+        for (GymMembership member: trainingZone) {
+            if (member != null) {
+                memberCounter++;
+                System.out.printf("Посетитель %d. %s %s, год рождения: %d. Абонемент %s, действует до %s\n",
+                        memberCounter,
+                        member.getSecondName(),
+                        member.getFirstName(),
+                        member.getBirthYear(),
+                        member.getGymMembershipType().getGymMembershipTypeName(),
+                        member.getEndTime());
+            }
+
+        }
+        if (memberCounter == 0) System.out.println("Посетителей нет");
+    }
+
+    public void printFitnessClubMembersInfo() {
+        printMembersInTrainingZoneInfo(GymZone.GYM);
+        printMembersInTrainingZoneInfo(GymZone.SWIMMING_POOL);
+        printMembersInTrainingZoneInfo(GymZone.GROUP_CLASSES);
     }
 
 }

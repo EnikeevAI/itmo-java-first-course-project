@@ -40,6 +40,7 @@ public class GymMembership {
         int currentYear = LocalDate.now().getYear();
         if (currentYear - birthYear > 80 || currentYear - birthYear < 0)
             throw new IllegalArgumentException("Проверьте правильность ввода года рождения клиента");
+        this.birthYear = birthYear;
     }
 
     private void setGymMembershipType(String gymMembershipType) {
@@ -72,6 +73,10 @@ public class GymMembership {
 
     public String getSecondName() {
         return secondName;
+    }
+
+    public int getBirthYear() {
+        return birthYear;
     }
 
     public GymMembershipType getGymMembershipType() {

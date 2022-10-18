@@ -29,5 +29,8 @@ public class Application {
             GymMembership abon = new GymMembership("Сергей", "Сергеев", 1969, "Полный", 10);
             bestClub.doTraining(abon,"Тренажерный зал", LocalTime.of(12, 15));
         }
+
+        // Выводим информацию о посетителях
+        bestClub.printFitnessClubMembersInfo();
     }
 }
