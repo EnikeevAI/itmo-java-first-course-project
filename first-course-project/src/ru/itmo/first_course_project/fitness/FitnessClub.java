@@ -46,7 +46,7 @@ public class FitnessClub {
         return membership.getEndTime().isAfter(workingDate);
     }
 
-    private boolean isTrainingTimecorrect(GymMembership membership, LocalTime trainingTime) {
+    private boolean isTrainingTimeСorrect(GymMembership membership, LocalTime trainingTime) {
         return trainingTime.isAfter(membership.getGymMembershipType().getStartTime()) &&
                 trainingTime.isBefore(membership.getGymMembershipType().getEndTime());
     }
@@ -112,7 +112,7 @@ public class FitnessClub {
             return;
         }
 
-        if (!isTrainingTimecorrect(membership, trainingTime)) {
+        if (!isTrainingTimeСorrect(membership, trainingTime)) {
             System.out.println("Ваш тип абонемента не позволяет заниматься в выбранное время");
             return;
         }
