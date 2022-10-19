@@ -2,8 +2,6 @@ package ru.itmo.first_course_project.fitness.enums;
 
 import ru.itmo.first_course_project.fitness.GymMembership;
 
-import java.io.PrintStream;
-
 public enum GymZone {
     SWIMMING_POOL
             (

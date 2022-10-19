@@ -1,7 +1,5 @@
 package ru.itmo.first_course_project.fitness;
 
-import ru.itmo.first_course_project.fitness.enums.GymZone;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 
