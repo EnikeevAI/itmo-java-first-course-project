@@ -35,6 +35,7 @@ public class FitnessClub {
     }
 
     public void stopWorking() {
+        System.out.println("Дата: " + workingDate + ". Клуб закрывается.");
         clubInitialization();
     }
 
